@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.models.User;
 import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
+    public User registerUser(User user) {
+        return userService.registerUser(user);
+    }
 
     @GetMapping("/users")
 

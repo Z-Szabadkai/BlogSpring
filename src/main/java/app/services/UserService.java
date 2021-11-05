@@ -33,8 +33,10 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void registerUser(User user) {
-        user.setUserPassword(encoder.encode(user.getPassword()));
-        em.persist(user);
+        if (!listAllUsers().contains(user.getUsername())) {
+            user.setUserPassword(encoder.encode(user.getPassword()));
+            em.persist(user);
+        }
     }
 
     public boolean loginUser(User user) {
